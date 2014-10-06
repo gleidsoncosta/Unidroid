@@ -54,7 +54,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	    	startActivity(i);
     		break;
     	case R.id.class_work:
-    		Intent a = new Intent(this, OpenGLES20Activity.class);
+    		Intent a = new Intent(this, ClassWork.class);
     		startActivity(a);
     		break;
     	case R.id.exit_button:

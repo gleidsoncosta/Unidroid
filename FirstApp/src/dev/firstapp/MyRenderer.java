@@ -5,12 +5,13 @@ import javax.microedition.khronos.opengles.GL10;
 
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.opengl.Matrix;
 
 public class MyRenderer implements GLSurfaceView.Renderer{
 	
 	public void onSurfaceCreated(GL10 unused, EGLConfig config){
 		//set background color
-		GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		GLES20.glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 	}
 	
 	public void onDrawFrame(GL10 unused){
