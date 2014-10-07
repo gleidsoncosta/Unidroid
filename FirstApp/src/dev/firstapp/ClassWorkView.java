@@ -3,65 +3,51 @@ package dev.firstapp;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Path.Direction;
-import android.graphics.Point;
-import android.util.Log;
-import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 
 public class ClassWorkView extends View{
 	
-	private float center_x;
-	private float center_y;
-	private float ray;
+	private SpinLine spin_line;
+	int line_combo;
+	private Circle circle;
 	
 	public ClassWorkView(Context context){
 		super(context);
 		
-		this.center_x = 100;
-		this.center_y = 100;
-		this.ray = 100;
-		Log.d("circle", this.center_x + "  " + this.center_y + "  " + this.ray);
-	}
-	
-	public ClassWorkView(Context context, float x, float y, float r){
-		super(context);
-		
-		center_x = x;
-		center_y = y;
-		ray = r;
+		spin_line = new SpinLine();
+		circle = new Circle();
+		int line_combo = 0;
 		
 	}
 	
 	public void onDraw(Canvas canvas){
+		
 		Paint background = new Paint();
 		background.setColor(getResources().getColor(R.color.white));
 		canvas.drawRect(0, 0, getWidth(), getHeight(),	background);
 		
-		Path circle = new Path();
-		circle.addCircle(center_x, center_y, ray, Direction.CW);
-		
-		Paint fillCircle = new Paint();
-		fillCircle.setColor(getResources().getColor(R.color.magenta));
-		fillCircle.setStyle(Paint.Style.FILL);
-		canvas.drawPath(circle, fillCircle);
+		spin_line.toDraw(canvas);
+		circle.toDraw(canvas);
 	}
 	
-	public void updatePosition(float x, float y){
+	public boolean onTouchEvent(MotionEvent event){
 		
-		/*if(center_x >= x){
-			center_x--;
+		if(event.getAction() == MotionEvent.ACTION_DOWN){
+			//if((line_combo++)%2==0){
+				//spin_line.updateInitialPosition((int)event.getX(), (int)event.getY());
+			//}else{
+				//spin_line.updateFinalPosition((int)event.getX(), (int)event.getY());
+			circle.updatePosition(event.getX(), event.getY());
+			
 		}else{
-			center_x++;
+			return super.onTouchEvent(event);
 		}
-		if(center_y >= y){
-			center_y--;
-		}else{
-			center_y++;
-		}*/
-		center_x =x;
-		center_y =y;
+			
+		
 		invalidate();
+		
+		return true;
 	}
+
 }
