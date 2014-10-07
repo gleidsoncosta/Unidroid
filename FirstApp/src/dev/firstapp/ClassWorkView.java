@@ -1,8 +1,12 @@
 package dev.firstapp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -10,13 +14,13 @@ public class ClassWorkView extends View{
 	
 	private SpinLine spin_line;
 	int line_combo;
-	private Circle circle;
+	private ArrayList<Circle> circle;  
 	
 	public ClassWorkView(Context context){
 		super(context);
 		
 		spin_line = new SpinLine();
-		circle = new Circle();
+		circle= new ArrayList<Circle>();
 		int line_combo = 0;
 		
 	}
@@ -28,7 +32,10 @@ public class ClassWorkView extends View{
 		canvas.drawRect(0, 0, getWidth(), getHeight(),	background);
 		
 		spin_line.toDraw(canvas);
-		circle.toDraw(canvas);
+		for(int i=0; i<circle.size(); i++){
+			circle.get(i).toDraw(canvas);
+		}
+		
 	}
 	
 	public boolean onTouchEvent(MotionEvent event){
@@ -38,7 +45,8 @@ public class ClassWorkView extends View{
 				//spin_line.updateInitialPosition((int)event.getX(), (int)event.getY());
 			//}else{
 				//spin_line.updateFinalPosition((int)event.getX(), (int)event.getY());
-			circle.updatePosition(event.getX(), event.getY());
+			Circle new_circle = new Circle(event.getX(), event.getY());
+			circle.add(new_circle);
 			
 		}else{
 			return super.onTouchEvent(event);

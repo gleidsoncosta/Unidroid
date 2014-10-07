@@ -20,6 +20,14 @@ public class Circle {
 		
 	}
 	
+	public Circle(float x, float y){
+		
+		this.center_x = x;
+		this.center_y = y;
+		this.ray = 100;
+		
+	}
+	
 	public void toDraw(Canvas canvas){
 		Path circle = new Path();
 		circle.addCircle(center_x, center_y, ray, Direction.CW);
