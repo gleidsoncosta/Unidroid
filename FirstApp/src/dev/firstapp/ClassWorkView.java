@@ -13,16 +13,17 @@ import android.view.View;
 public class ClassWorkView extends View{
 	
 	private SpinLine spin_line;
-	int line_combo;
-	private ArrayList<Circle> circle;  
+	private int line_combo;  
+	private Circle circle;
+	
+	
 	
 	public ClassWorkView(Context context){
 		super(context);
 		
 		spin_line = new SpinLine();
-		circle= new ArrayList<Circle>();
 		int line_combo = 0;
-		
+		circle = new Circle();
 	}
 	
 	public void onDraw(Canvas canvas){
@@ -32,30 +33,26 @@ public class ClassWorkView extends View{
 		canvas.drawRect(0, 0, getWidth(), getHeight(),	background);
 		
 		spin_line.toDraw(canvas);
-		for(int i=0; i<circle.size(); i++){
-			circle.get(i).toDraw(canvas);
-		}
-		
+		circle.toDraw(canvas);
+
 	}
 	
 	public boolean onTouchEvent(MotionEvent event){
 		
-		if(event.getAction() == MotionEvent.ACTION_DOWN){
-			//if((line_combo++)%2==0){
-				//spin_line.updateInitialPosition((int)event.getX(), (int)event.getY());
-			//}else{
-				//spin_line.updateFinalPosition((int)event.getX(), (int)event.getY());
-			Circle new_circle = new Circle(event.getX(), event.getY());
-			circle.add(new_circle);
-			
-		}else{
-			return super.onTouchEvent(event);
+		switch(event.getAction()){
+			case MotionEvent.ACTION_DOWN:
+				if(circle.onCollider(event.getX(), event.getY())){
+					circle.setSelection();
+				}
+				break;
 		}
+		
+		circle.toControl(event);
 			
-		
 		invalidate();
-		
 		return true;
 	}
+	
+	
 
 }
