@@ -1,6 +1,15 @@
 package dev.firstapp;
 
-import dev.firstapp.About;
+import dev.firstapp.R;
+import dev.firstapp.Activities.About;
+import dev.firstapp.Activities.ClassWork;
+import dev.firstapp.Activities.Game;
+import dev.firstapp.Activities.Prefs;
+import dev.firstapp.R.array;
+import dev.firstapp.R.id;
+import dev.firstapp.R.layout;
+import dev.firstapp.R.menu;
+import dev.firstapp.R.string;
 import android.app.Activity;
 import android.os.Bundle;
 

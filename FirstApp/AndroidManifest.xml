@@ -28,28 +28,28 @@
         </activity>
         
         <activity 
-            android:name=".About"
+   			android:name=".Activities.About"
 			android:label="@string/about_title" 
 			android:theme="@android:style/Theme.Dialog" >
 		</activity>
 		
-        <activity 
-            android:name=".Prefs"
+		<activity 
+            android:name=".Activities.Prefs"
 			android:label="@string/settings_title" >
 		</activity>
 		
         <activity 
-            android:name=".Game" 
+            android:name=".Activities.Game" 
             android:label = "@string/game_title" >
 		</activity>
-		
-        <activity
-            android:name=".ClassWork"
+	
+		<activity
+            android:name=".Activities.ClassWork"
             android:label = "@string/class_work_title" >
         </activity>
         
         <activity
-            android:name=".OpenGLES20Activity"
+   			android:name=".Activities.OpenGLES20Activity"
             android:label = "OPENGL" >
         </activity>
     
